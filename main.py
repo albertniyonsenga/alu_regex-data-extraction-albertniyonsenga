@@ -1,76 +1,65 @@
-import re
+from colorama import init, Fore
+from validator import VALIDATORS
 
-# Adding Email extraction logic 
-def extract_emails(text):
-    "Extracts email addresses from the given text."
-    pattern = r'\b[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}\b'
-    return re.findall(pattern, text)
+# Demonstrate the different behavior when autoreset is True and False.
+"""So better to make it True so that whenever we assign color 
+it doesn't affect other which is not assigned to.
+"""
 
-# Adding Url extraction logic
-def extract_urls(text):
-    "Extracts URLs from the given text."
-    pattern = r'\bhttps?://(?:www\.)?[\w-]+\.[\w.-]+[/\w .-]*\b'
-    return re.findall(pattern, text)
+init(autoreset=True)
 
-# Adding Phone number logic
-def extract_phone_numbers(text):
-    "Extracts phone numbers from the given text."
-    pattern = r'\b(?:\(\d{3}\)[\s-]?|\d{3}[.-]?)\d{3}[.-]?\d{3}\b'
-    return re.findall(pattern, text)
+def display_menu():
 
-# Adding Currency logic
-def extract_currency(text):
-    "Extracts currency amounts from the given text."
-    pattern = r'\$(?:\d{1,3}(?:,\d{3})*|\d+)\.\d{2}\b'
-    return re.findall(pattern, text)
+    print(Fore.MAGENTA + "\n" + "-"*50)
+    print(Fore.MAGENTA + " REGULAR EXPRESSION VALIDATOR ".center(50, ' '))
+    print(Fore.MAGENTA + "_"*50)
+    print("\nAvailable validation options:\n")
 
-# Adding Time in 12 Format
-def extract_time_12(text):
-    "Extracts time in 12 format from the given text."
-    pattern = r'(0[0-9]|1[0-2]):[0-5][0-9]'
-    return re.findall(pattern, text)
+    # Getting all validators and assign number to them so that we can call them with ease
+    for i, (key, validator) in enumerate(VALIDATORS.items(), 1):
+        print(Fore.YELLOW + f"{i}. {key.capitalize()}")# And make the keys capitalized at first letter
 
-# Adding Time logic in 24 Format
-def extract_time_24(text):
-    "Extracts time in 12 format from the given text."
-    pattern = r'(0[0-9]|1[0-9]|2[0-4]):[0-5][0-9]'
-    return re.findall(pattern, text)
+    print(Fore.YELLOW + "0. Exit")
 
-def extract_hashtags(text):
-    "Extracting hashtags from the given text."
-    pattern = r'#\w+\b'
-    return re.findall(pattern, text)
+def get_user_choice():
+    while True:
+        try:
+            choice = int(input("\nEnter your choice (0-4): "))
+            if 0 <= choice <= len(VALIDATORS):
+                return choice
+            print(Fore.RED + "Invalid choice. Please try again.")
+        except ValueError:
+            print(Fore.RED + "Please enter a valid number.")
 
 def main():
-    # For testing while using `re` package
-    test_email = "albertniyon@gmail.com or a.niyonseng@alustudent.com"
-    test_url = """https://rubular.com/, despite of using only that url let's try https://www.ucll.be/en
-      or simply use this url to youtube video of It's complicated by Fave here https://www.youtube.com/watch?v=0Z7RjfeQaNk&pp=0gcJCdgAo7VqN5tD"""
-    
-    test_phone = "(250) 790 068 175 my number or this (250) 790-068-175 or simply with dot (250) 790.068.175"
-    test_currency = "This semester i will pay around $333.30 or i can even pay $30.00 until i reach the actual amount"
-    test_time_12 = "We are around 12:00 AM i guess or it's 19:02 am wrong:"
-    test_time_24 = "It's 19:02,right?"
-    test_hashtags = "Our moto is  #KarameNaBK or #Gwamon_n na MTN."
+    while True:
+        display_menu()
+        choice = get_user_choice()
+        
+        if choice == 0:
+            print("\nThank you for using Our Regex Validator")
+            break
 
-
-    # Extracting 
-    emails = extract_emails(test_email)
-    urls = extract_urls(test_url)
-    phone = extract_phone_numbers(test_phone)
-    currency = extract_currency(test_currency)
-    format12 = extract_time_12(test_time_12)
-    format24 = extract_time_24(test_time_24)
-    hashtags = extract_hashtags(test_hashtags)
-
-    # Printing the results
-    print("Extracted Emails:", emails)
-    print("Extracted Urls:", urls)
-    print("Extracted Phone number:", phone)
-    print("Extracted Currency amount:", currency)
-    print("Extracted Time in 12 format:", format12)
-    print("Extracted Time in 24 format:", format24)
-    print("Extract Hashtags:", hashtags)
+        """How it works:
+        1. Here will get the choice minus one to get actual index of the keys
+        2. Then we call the validation function by using its index from step 1
+        3. Then after we get the user input and assign it to the attribute of our function from step 2.
+        """
+        validator_name = list(VALIDATORS.keys())[choice-1]
+        validator_fn = VALIDATORS[validator_name]
+        user_input = input(f"\nEnter text to validate as {validator_name}: ").strip()
+        
+        result = validator_fn(user_input) # Which will return dictionary with valid, matches and description
+        
+        print("\n" + "-"*50)
+        if result['valid']:
+            print(Fore.GREEN +"Valid format detected!")
+            print(f"Matched values: {', '.join(result['matches'])}")
+        else:
+            print(Fore.RED + "Invalid format detected!\n")
+            print(Fore.MAGENTA + result['description'])
+        
+        input("\nPress Enter to continue...")
 
 if __name__ == "__main__":
     main()
