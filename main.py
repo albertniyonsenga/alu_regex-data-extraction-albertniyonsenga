@@ -24,6 +24,12 @@ def extract_currency(text):
     pattern = r'\$(?:\d{1,3}(?:,\d{3})*|\d+)\.\d{2}\b'
     return re.findall(pattern, text)
 
+# Adding Time in 12 Format
+def extract_time_12(text):
+    "Extracts time in 12 format from the given text."
+    pattern = r'(0[0-9]|1[0-2]):[0-5][0-9]\b'
+    return re.findall(pattern, text)
+
 def main():
     # For testing while using `re` package
     test_email = "albertniyon@gmail.com or a.niyonseng@alustudent.com"
@@ -32,6 +38,7 @@ def main():
     
     test_phone = "(250) 790 068 175 my number or this (250) 790-068-175 or simply with dot (250) 790.068.175"
     test_currency = "This semester i will pay around $333.30 or i can even pay $30.00 until i reach the actual amount"
+    test_time_12 = "We are around 12:00 AM i guess or it's 19:02 am wrong"
 
 
     # Extracting 
@@ -39,12 +46,15 @@ def main():
     urls = extract_urls(test_url)
     phone = extract_phone_numbers(test_phone)
     currency = extract_currency(test_currency)
+    format12 = extract_time_12(test_time_12)
 
     # Printing the results
     print("Extracted Emails:", emails)
     print("Extracted Urls:", urls)
     print("Extracted Phone number:", phone)
     print("Extracted Currency amount:", currency)
+    print("Extracted Time in 12 format:", format12)
+
 
 if __name__ == "__main__":
     main()
