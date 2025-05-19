@@ -36,6 +36,11 @@ def extract_time_24(text):
     pattern = r'(0[0-9]|1[0-9]|2[0-4]):[0-5][0-9]'
     return re.findall(pattern, text)
 
+def extract_hashtags(text):
+    "Extracting hashtags from the given text."
+    pattern = r'#\w+\b'
+    return re.findall(pattern, text)
+
 def main():
     # For testing while using `re` package
     test_email = "albertniyon@gmail.com or a.niyonseng@alustudent.com"
@@ -46,6 +51,7 @@ def main():
     test_currency = "This semester i will pay around $333.30 or i can even pay $30.00 until i reach the actual amount"
     test_time_12 = "We are around 12:00 AM i guess or it's 19:02 am wrong:"
     test_time_24 = "It's 19:02,right?"
+    test_hashtags = "Our moto is  #KarameNaBK or #Gwamon_n na MTN."
 
 
     # Extracting 
@@ -55,6 +61,7 @@ def main():
     currency = extract_currency(test_currency)
     format12 = extract_time_12(test_time_12)
     format24 = extract_time_24(test_time_24)
+    hashtags = extract_hashtags(test_hashtags)
 
     # Printing the results
     print("Extracted Emails:", emails)
@@ -63,6 +70,7 @@ def main():
     print("Extracted Currency amount:", currency)
     print("Extracted Time in 12 format:", format12)
     print("Extracted Time in 24 format:", format24)
+    print("Extract Hashtags:", hashtags)
 
 if __name__ == "__main__":
     main()
