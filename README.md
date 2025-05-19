@@ -1,8 +1,8 @@
 # Regex Data Extraction
 
-# How it works
+### How it works
 
-# Environement Setup
+### Environement Setup
 
-# Resources
+### Resources
 
