@@ -27,7 +27,13 @@ def extract_currency(text):
 # Adding Time in 12 Format
 def extract_time_12(text):
     "Extracts time in 12 format from the given text."
-    pattern = r'(0[0-9]|1[0-2]):[0-5][0-9]\b'
+    pattern = r'(0[0-9]|1[0-2]):[0-5][0-9]'
+    return re.findall(pattern, text)
+
+# Adding Time logic in 24 Format
+def extract_time_24(text):
+    "Extracts time in 12 format from the given text."
+    pattern = r'(0[0-9]|1[0-9]|2[0-4]):[0-5][0-9]'
     return re.findall(pattern, text)
 
 def main():
@@ -38,7 +44,8 @@ def main():
     
     test_phone = "(250) 790 068 175 my number or this (250) 790-068-175 or simply with dot (250) 790.068.175"
     test_currency = "This semester i will pay around $333.30 or i can even pay $30.00 until i reach the actual amount"
-    test_time_12 = "We are around 12:00 AM i guess or it's 19:02 am wrong"
+    test_time_12 = "We are around 12:00 AM i guess or it's 19:02 am wrong:"
+    test_time_24 = "It's 19:02,right?"
 
 
     # Extracting 
@@ -47,6 +54,7 @@ def main():
     phone = extract_phone_numbers(test_phone)
     currency = extract_currency(test_currency)
     format12 = extract_time_12(test_time_12)
+    format24 = extract_time_24(test_time_24)
 
     # Printing the results
     print("Extracted Emails:", emails)
@@ -54,7 +62,7 @@ def main():
     print("Extracted Phone number:", phone)
     print("Extracted Currency amount:", currency)
     print("Extracted Time in 12 format:", format12)
-
+    print("Extracted Time in 24 format:", format24)
 
 if __name__ == "__main__":
     main()
