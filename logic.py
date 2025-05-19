@@ -16,7 +16,8 @@ def extract_urls(text):
 def main():
     # For testing while using `re` package
     test_email = "albertniyon@gmail.com or a.niyonseng@alustudent.com"
-    test_url = "https://rubular.com/ or https://www.ucll.be/en"
+    test_url = """https://rubular.com/, despite of using only that url let's try https://www.ucll.be/en
+      or simply use this url to youtube video of It's complicated by Fave here https://www.youtube.com/watch?v=0Z7RjfeQaNk&pp=0gcJCdgAo7VqN5tD"""
 
     # Extracting 
     emails = extract_emails(test_email)
@@ -25,6 +26,6 @@ def main():
     # Printing the results
     print("Extracted Emails:", emails)
     print("Extracted Urls:", urls)
-    
+
 if __name__ == "__main__":
     main()
