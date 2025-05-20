@@ -1,7 +1,7 @@
 <div align='center'>
 <h1>Regex Data Extraction</h1></div>
 
-**Regular Expression** (shortened as **Regex** or **Regexp**), explained as a `sequence of characters` that specifies a `match pattern` in `text` or generally given `inputs`.Such patterns are mainly used in `string-searching algorithms`(like `find and replace` operations, used in `search engines`) and, more importantly, in `input validation`. Great thanks to  [Stephen Cole Kleene](https://en.wikipedia.org/wiki/Stephen_Cole_Kleene) for introducing the concept.
+**Regular Expression** (shortened as **Regex** or **Regexp**) is a `sequence of characters` that specifies a `match pattern` in `text` or generally given `inputs`. Such patterns are mainly used in `string-searching algorithms`(like `find and replace` operations, used in `search engines`) and, more importantly, in `input validation`. Thanks to  [Stephen Cole Kleene](https://en.wikipedia.org/wiki/Stephen_Cole_Kleene) for introducing the concept.
 
 ### Our task
 To extract the required data from the hundreds of thousands of pages of string response you get from your API, we have decided to unleash the raw power of Regular Expressions. We already know how the specific types of data you are looking for appear in the string. This is how you have summarized that information. Now, all we have to do is write your Regular Expressions. 
@@ -21,7 +21,7 @@ In our case, we chose to work on:
 
 pip install -r requirements.txt
 ```
-2. After installing [colorama](https://github.com/tartley/colorama), you have to run your program as well 🤤. The main reason we used `coloram` is to make our `CLI` program, while testing our `regex`, look nicer.
+2. After installing [colorama](https://github.com/tartley/colorama), you have to run your program as well 🤤. The main reason we used `coloram` is to make our `CLI` program look nicer while testing our `regex`.
 
 ```
 # Here you can use python3 or simply python
@@ -40,7 +40,7 @@ So far, we are ready to use our `Regex` validator ✔️.
 
 <details><summary>2. URLs </summary>
 
-Here we used the pattern `\bhttps?://(?:www\.)?[\w-]+\.[\w.-]+[/\w .-]*\b` to look for links that start with `https://` followed by `www` or any character as the general format, or not ones like `https://rubular.com/` and be able to validate correctly the links with pages as well but not limited to letters, numbers, dots or underscores.
+We used the pattern `\bhttps?://(?:www\.)?[\w-]+\.[\w.-]+[/\w .-]*\b` to look for links that start with `https://` followed by `www` or any character as the general format, or not ones like `https://rubular.com/` and be able to validate correctly the links with pages as well but not limited to letters, numbers, dots or underscores.
 </details>
 
 <details><summary>3. Phone Numbers </summary>
@@ -49,7 +49,7 @@ Here we used the pattern `[(][+]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{3}?[0
 
 **Examples** here can be (+123) 456-789-001, (+250) 790 068 175, or (+123).456.789.103.
 
-> This is kinda great for `Rwanda's phone numbers` or any other country with 3-numeric characters as country codes or even phone numbers of about ten characters, but can't work well for other phone numbers.
+> This is great for `Rwanda's phone numbers` or any other country with 3-numeric characters as country codes or even phone numbers of about ten characters, but it can't work well for other phone numbers.
 
 </details>
 
@@ -68,8 +68,10 @@ To be able to extract valid `hashtags`, we used `#\w+\b` as a pattern so that we
 
 <details><summary>6. Currency amounts</summary>
   
-As `Currency amounts`, we specifically used `US Dollars` in our pattern, which is `\$\d{1,3}(?:,\d{3})*\.\d{2}\b`. This pattern emphasizes that we must have a `Dollar sign` at the start, followed by a `comma` when we have thousands, strictly as a separator, and also requires two decimal digits at the end of the currency. Examples can be `$19.99`, `$1,234.56`, or `$10.00`.
+As `Currency amounts`, we specifically used `US Dollars` in our pattern, which is `\$\d{1,3}(?:,\d{3})*\.\d{2}\b`. This pattern emphasizes that we must have a `Dollar sign` at the start, followed by a `comma` when we have thousands, strictly as a separator, and also requires two decimal digits at the end of the currency. Examples include `$19.99`, `$1,234.56`, or `$10.00`.
 </details>
 
 ### Resources
+The resources used how to learn more about `Regex` and their implemententation are many, however here're some that stood up: [Re library](https://docs.python.org/3/library/re.html), [Regular Expression](https://en.wikipedia.org/wiki/Regular_expression), [Rubular](https://rubular.com/), [iHateRegex](https://ihateregex.io/playground) and [GeeksforGeeks](https://www.geeksforgeeks.org/regular-expression-python-examples/).
 
+#### Thanks :smile:
