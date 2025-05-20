@@ -15,13 +15,18 @@ In our case, we chose to work on:
 - And Currency amounts(in US Dollars)
   
 ### Environment Setup
-1. Ensure that you have **Python 3x** installed already because we used **Python** to implement all `Regex` logic.
+1. First, clone this repo or use its codespace.
+```
+# For cloning this repo on your local machine
+git clone https://github.com/albertniyonsenga/alu_regex-data-extraction-albertniyonsenga.git
+```
+2. Ensure that you have **Python 3x** installed already because we used **Python** to implement all `Regex` logic.
 ```
 # To install the colorama package used in this project
 
 pip install -r requirements.txt
 ```
-2. After installing [colorama](https://github.com/tartley/colorama), you have to run your program as well 🤤. The main reason we used `coloram` is to make our `CLI` program look nicer while testing our `regex`.
+3. After installing [colorama](https://github.com/tartley/colorama), you have to run your program as well 🤤. The main reason we used `coloram` is to make our `CLI` program look nicer while testing our `regex`.
 
 ```
 # Here you can use python3 or simply python
